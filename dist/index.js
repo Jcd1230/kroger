@@ -127,6 +127,7 @@ class Kroger {
                         }
                     };
                     xhr.onerror = function (ev) {
+                        console.log(ev);
                         reject({
                             status: this.status,
                             statusText: xhr.statusText
@@ -218,6 +219,8 @@ class Kroger {
                 shoppingContextDivision: receipt.receiptId.divisionNumber,
                 shoppingContextStore: receipt.receiptId.storeNumber
             };
+            console.log("Posting to receipt data");
+            console.log(data);
             var resultString = yield this.httpPost(this.endpoint + "mypurchases/api/v1/receipt/detail", data);
             var resultJson;
             try {

@@ -130,6 +130,7 @@ export default class Kroger {
 					}
 				};
 				xhr.onerror = function (ev) {
+					console.log(ev);
 					reject({
 						status: this.status,
 						statusText: xhr.statusText
@@ -214,6 +215,7 @@ export default class Kroger {
 
 	async receiptData(receipt: IReceipt): Promise<IReceipt> {
 		var data = {
+
 			divisionNumber: receipt.receiptId.divisionNumber,
 			storeNumber: receipt.receiptId.storeNumber,
 			terminalNumber: receipt.receiptId.terminalNumber,
@@ -222,7 +224,8 @@ export default class Kroger {
 			shoppingContextDivision: receipt.receiptId.divisionNumber,
 			shoppingContextStore: receipt.receiptId.storeNumber
 		};
-
+		console.log("Posting to receipt data");
+		console.log(data);
 		var resultString = await this.httpPost(this.endpoint + "mypurchases/api/v1/receipt/detail", data);
 
 		var resultJson: any;
