@@ -170,14 +170,16 @@ export default class Kroger {
         await this.page.goto(this.endpoint + "signin?redirectUrl=/", {
             waitUntil: 'networkidle0'
         });
-        await this.page.waitFor(1000 + Math.random() * 100);
+        await this.page.waitFor(500 + Math.random() * 100);
 
         await this.page.type("#SignIn-emailInput", email);
         await this.page.waitFor(500 + Math.random() * 100);
         await this.page.type("#SignIn-passwordInput", password);
-        await this.page.waitFor(300 + Math.random() * 100);
-        await this.page.click("#SignIn-rememberMe");
-        await this.page.waitFor(1000 + Math.random() * 100);
+		if (!rememberMe) {
+        	await this.page.waitFor(300 + Math.random() * 100);
+        	await this.page.click("#SignIn-rememberMe");
+		}
+        await this.page.waitFor(500 + Math.random() * 100);
         await this.page.click("#SignIn-submitButton");
 
         await this.page.waitForNavigation();
