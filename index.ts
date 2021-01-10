@@ -123,18 +123,18 @@ export default class Kroger {
 					if (this.status >= 200 && this.status < 300) {
 						resolve(xhr.response);
 					} else {
-						reject({
+						reject(JSON.stringify({
 							status: this.status,
 							statusText: xhr.statusText
-						});
+						}));
 					}
 				};
 				xhr.onerror = function (ev) {
 					console.log(ev);
-					reject({
+					reject(JSON.stringify({
 						status: this.status,
 						statusText: xhr.statusText
-					});
+					}));
 				};
 				if(dataStr !== "") {
 					xhr.send(dataStr);
@@ -226,8 +226,11 @@ export default class Kroger {
 		};
 		console.log("Posting to receipt data");
 		console.log(data);
-		var resultString = await this.httpPost(this.endpoint + "mypurchases/api/v1/receipt/detail", data);
-
+		try {
+			var resultString = await this.httpPost(this.endpoint + "mypurchases/api/v1/receipt/detail", data);
+		} catch (err) {
+			console.log(err);
+		}
 		var resultJson: any;
 		try {
 			resultJson = JSON.parse(resultString);

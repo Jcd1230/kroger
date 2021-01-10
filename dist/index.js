@@ -120,18 +120,18 @@ class Kroger {
                             resolve(xhr.response);
                         }
                         else {
-                            reject({
+                            reject(JSON.stringify({
                                 status: this.status,
                                 statusText: xhr.statusText
-                            });
+                            }));
                         }
                     };
                     xhr.onerror = function (ev) {
                         console.log(ev);
-                        reject({
+                        reject(JSON.stringify({
                             status: this.status,
                             statusText: xhr.statusText
-                        });
+                        }));
                     };
                     if (dataStr !== "") {
                         xhr.send(dataStr);
@@ -221,7 +221,12 @@ class Kroger {
             };
             console.log("Posting to receipt data");
             console.log(data);
-            var resultString = yield this.httpPost(this.endpoint + "mypurchases/api/v1/receipt/detail", data);
+            try {
+                var resultString = yield this.httpPost(this.endpoint + "mypurchases/api/v1/receipt/detail", data);
+            }
+            catch (err) {
+                console.log(err);
+            }
             var resultJson;
             try {
                 resultJson = JSON.parse(resultString);
