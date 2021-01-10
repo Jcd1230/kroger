@@ -9,8 +9,8 @@
   "main": "dist/index.js",
   "types": "dist/index.d.js",
   "dependencies": {
-    "axios": "^0.18.0",
-    "puppeteer": "^1.6.1"
+    "axios": "^0.21.1",
+    "puppeteer": "^1.20.0"
   },
   "devDependencies": {
     "@types/puppeteer": "^1.5.1",
