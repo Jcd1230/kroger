@@ -43,7 +43,7 @@ class Kroger {
             yield this.page.setRequestInterception(true);
             // Disabling "bd-1-30" breaks login
             var disallowedUrlTest = RegExp(`adobe|mbox|ruxitagentjs|akam|sstats.kroger.com|
-                rb_[A-Za-z0-9]{8}-[A-Za-z0-9]{4}-[A-Za-z0-9]{4}-[A-Za-z0-9]{4}-[A-Za-z0-9]{12}`);
+				rb_[A-Za-z0-9]{8}-[A-Za-z0-9]{4}-[A-Za-z0-9]{4}-[A-Za-z0-9]{4}-[A-Za-z0-9]{12}`);
             this.page.on('request', (request) => {
                 const url = request.url();
                 // Check request if it is for the file
