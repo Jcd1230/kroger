@@ -19,7 +19,7 @@ export default class Kroger {
 	}
 
 	async setUp() {
-		this.browser = await launch({ headless: false, args: ["--disable-web-security"]});
+		this.browser = await launch({ headless: true, args: ["--disable-web-security"]});
 		this.page = await this.browser.newPage();
 
 		await this.detectionBypass();

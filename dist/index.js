@@ -18,7 +18,7 @@ class Kroger {
     }
     setUp() {
         return __awaiter(this, void 0, void 0, function* () {
-            this.browser = yield puppeteer_1.launch({ headless: false, args: ["--disable-web-security"] });
+            this.browser = yield puppeteer_1.launch({ headless: true, args: ["--disable-web-security"] });
             this.page = yield this.browser.newPage();
             yield this.detectionBypass();
         });
